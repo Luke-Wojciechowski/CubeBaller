@@ -7,14 +7,16 @@ TagManager:
   - Red
   - Blue
   - Ball
+  - treshhold
+  - border
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - WallIignore
   - Water
   - UI
-  - 
+  - wall
   - 
   - 
   - 
