@@ -27,12 +27,8 @@ public sealed class QAgent : MonoBehaviour {
 	public static event Action OnCrush;
 	private float reward = 0.0f;							 
 	private List<Replay> replayMemory = new List<Replay>();	 
+	private float discount = 0.99f;
 	private int mCapacity = 10000;
-	private float discount = 0.99f;							 
-	private float exploreRate = 100.0f;						 
-	private float maxExploreRate = 100.0f;					 
-	private float minExploreRate = 0.01f;					 
-	private float exploreDecay = 0.0001f;
 	private float moveForce = 25f;
 	private float timer = 0;								 
 	private float maxBalanceTime = 0;
@@ -82,8 +78,7 @@ public sealed class QAgent : MonoBehaviour {
 		softMaxValue = SoftMax(_qLearnUnit.CalcOutput(states));
 		float maxQ = softMaxValue.Max();
 		int maxQIndex = softMaxValue.ToList().IndexOf(maxQ);
-		exploreRate = Mathf.Clamp(exploreRate - exploreDecay, minExploreRate, maxExploreRate);
-		
+
 		if(maxQIndex == 0)
 			rb.AddForce(Vector3.up * moveForce * softMaxValue[maxQIndex]);
 
